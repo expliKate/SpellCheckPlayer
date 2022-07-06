@@ -1,3 +1,5 @@
+# TODO: Add header
+
 import Levenshtein
 import PySimpleGUI as psguy
 
