@@ -4,22 +4,28 @@ import PySimpleGUI as psguy
 def SpellCheck(target,userInput):
     return str(Levenshtein.ratio(target,userInput))
 
-myTarg = 'Jennifer'
-uIn = 'Yennifer'
+# TODO: Add remaining text.
+# TODO: Add a field for a second term.
+thisLay = [[psguy.Text('Welcome to the SpellCheck Player.\nThis is where you will play around with spellcheck settings.\
+    \nA typical spellchecker will tell you if a word is spelled correctly based on some reference word.\
+    \nThis SpellCheck player instead tells you how closely any two words or phrases match.\
+    \nA score of 1 means an exact match, and anything less than that is a partial match.\
+    \n\nEnter your reference word ("correctly" spelled) here:')],
+          #[psguy.Input()],
+          [psguy.Input()],
+          [psguy.OK('Check Spelling')]]
+
+thisWin =psguy.Window('SpellCheck Player', thisLay, margins=(100, 50))
 
 while True:
-    event, values = psguy.Window(title="SpellCheck Player", layout=[[]], margins=(100, 50)).read()
-    # End program if user closes window or
-    # presses the OK button
-    if event == "OK" or event == psguy.WIN_CLOSED:
+    event, values = thisWin.read()
+    if event == 'Check Spelling':
+        #TODO: Get actual values
+        myTarg = 'Jennifer'
+        uIn = 'Yennifer'
+        #TODO: Display these results in the window instead of the terminal
+        print('The score for ' + myTarg + ' and ' + uIn + ' is: ' + SpellCheck(myTarg,uIn))
+    if event == psguy.WIN_CLOSED:
         break
 
-psguy.Window.close()
-
-
-print('Welcome to the SpellCheckPlayer.')
-print('This is a tool to help you play with the setup of a spellchecker.')
-print('You are going to enter some words, and instead of getting an answer to the question "Is this word spelled correctly?", you will get an answer to the question "How closely does the second word match the first word?')
-print('A score of 1 means an exact match, and anything less than that is an impartial match.')
-print('The score for ' + myTarg + ' and ' + uIn + ' is: ' + SpellCheck(myTarg,uIn))
-print('Exiting...')
+thisWin.close()
