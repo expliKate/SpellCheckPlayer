@@ -1,1 +1,7 @@
-mysite/settings.py
+SpellCheckPlayer/mysite/.env
+
+db.sqlite3
+db.sqlite3-journal
+
+.env
+.venv
